@@ -18,4 +18,4 @@ The app is a Restaurant app with some meals categories and details,
 
 ![Meals](screenshots/Meals.png)
 
-![Meals](screenshots/Meal_Details.png.png)
+![Meals](screenshots/Meal_Details.png)

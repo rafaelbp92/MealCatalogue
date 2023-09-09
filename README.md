@@ -14,7 +14,7 @@ The app is a Restaurant app with some meals categories and details,
 
 ![Categories page](screenshots/Categories.png)
 
-![Drawer](screenshots/Categories_Drawer.png.png)
+![Drawer](screenshots/Categories_Drawer.png)
 
 ![Meals](screenshots/Meals.png)
 

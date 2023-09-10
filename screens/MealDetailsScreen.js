@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import {
   Image,
   ScrollView,
@@ -8,24 +8,38 @@ import {
   View,
 } from "react-native";
 import IconButton from "../components/IconButton";
+import { FavoritesContext } from "../store/context/favorites-context";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, removeFavorite } from "../store/redux/favorites"
 
 function MealDetailsScreen() {
   const navigation = useNavigation();
   const route = useRoute();
   const meal = route.params.mealDetails;
+  //const favoriteMealsContext = useContext(FavoritesContext);
+  const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids);
+  const dispatch = useDispatch();
+  //const mealIsFavorite = favoriteMealsContext.ids.includes(meal.id);
+  const mealIsFavorite = favoriteMealIds.includes(meal.id);
 
-  function headerButtonPressHandler() {
-    console.log("Pressed!");
+  function changeFavoriteStatusPressHandler() {
+    if (mealIsFavorite) {
+      //favoriteMealsContext.removeFavorite(meal.id);
+      dispatch(removeFavorite({id: meal.id}));
+    } else {
+      //favoriteMealsContext.addFavorite(meal.id);
+      dispatch(addFavorite({id: meal.id}));
+    }
   }
 
   useLayoutEffect(() => {
     navigation.setOptions({
       title: meal.title,
       headerRight: () => {
-        return <IconButton icon="star" color="yellow" onPress={headerButtonPressHandler} />;
+        return <IconButton icon={mealIsFavorite ? "star" : "star-outline"} color="white" onPress={changeFavoriteStatusPressHandler} />;
       },
     });
-  }, [navigation, meal, headerButtonPressHandler]);
+  }, [navigation, meal, changeFavoriteStatusPressHandler]);
 
   return (
     <ScrollView style={styles.container}>

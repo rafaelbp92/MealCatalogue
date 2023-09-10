@@ -6,6 +6,8 @@ This is an React native application developed during an Udemy course, to learn s
  - Stack navigator
  - Drawer navigator
  - Combining navigators
+ - Context API
+ - Redux
 
 The app is a Restaurant app with some meals categories and details,
 
